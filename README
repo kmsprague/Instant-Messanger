@@ -1,0 +1,36 @@
+Name: Kyle Sprague
+Class: CS371 
+Project: Individual Programming assignment 
+Purpose: server.c, when ran, starts a server for which a client can connect to and it waits for a client to do so. 
+            client.c, when ran with the device name server is run on and the port number its using, connects to the server and waits for it.
+            Once the two are connected the server can send a message to the client and waits for it to respond. The client can then send a 
+            message back. They can do this until the client sends "!QUIT" which ends the clients connection to the server. The server then 
+            waits for another client to connect and when it does starts the messaging process over again. The server program stops when 
+            it sends the "!QUIT" message to the client which also causes the client program to stop running. It does all of this using 
+            the socket framework found in <sys/socket.h> 
+
+Compilation: download the makefile included in this zip file to the directory the server and client are saved in and type "make" into the command line.
+
+How to run: server.c has to be run first and it needs a port number that it can use. This port number has to be open to use and if its not the 
+            program will send an error saying such and it will end. Typically server numbers above 2000 are avalible for use.
+
+            ./Server portnumber
+
+            client.c can only run if the server is already running and requires the device name the server is running on as well as the port number 
+            it is using.
+
+            ./Client serverdevicename portnumber 
+
+            Once it is running the server will send the first message and the client cannot do anything until it recieves that message. Likewise for 
+            the server, while the client is writing a message to send it cannot do anything.
+
+            The client can end at any time by sending "!QUIT" to the server but the server must have a client connected and send them the "!QUIT" message 
+            for it to end.  
+
+Bugs:    In my Visual Studios envoirnment it says there's an error in client.c ("message": "struct \"hostent\" has no field \"h_addr\"") but the code still
+            compiles and runs as if there is no error and this error doesn't make sense beucase hostent does have a h_addr field. I don't know if this will
+            even appear on other people's machines but it has no effect on the program. 
+
+Resources: Some source code setting up the connection between the server and client as well as sending messages between them is from Robert Ingalls' 
+            Socket Tutorial that was given in the assignment description. This tutorial also provided some information that was reflected in the 
+            comments in the programs. 
